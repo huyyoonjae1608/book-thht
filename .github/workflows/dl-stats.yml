@@ -16,7 +16,7 @@ jobs:
         run: |
           mkdir -p stats
           [ -f stats/downloads.csv ] || echo "date,tag,asset,downloads" > stats/downloads.csv
-          gh api repos/${{ github.repository }}/releases --paginate \
+          gh api repos/dangquanghieu/book-thht/releases --paginate \
             --jq '.[] | .tag_name as $t | .assets[] | [(now|strftime("%Y-%m-%d")), $t, .name, .download_count] | @csv' \
             >> stats/downloads.csv
       - name: Commit
